@@ -1,15 +1,16 @@
-import Header from './components/header/Header'
-import Login from './components/login/Login'
-import Signup from './components/signup/Signup'
+import { Route, Routes } from "react-router-dom";
+
 import './css-helper/prefix.scss'
+
+import Homepage from './pages/homepage/Homepage'
 
 function App() {
 
   return (
     <div className="App">
-      <Header />
-      <Signup />
-      {/* <Login /> */}
+      <Routes>
+        <Route path="/" element={<Homepage />}></Route>
+      </Routes>
     </div>
   )
 }

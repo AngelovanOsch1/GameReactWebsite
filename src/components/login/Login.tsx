@@ -1,10 +1,13 @@
-import React from 'react'
 import './login.scss'
 
-const Login = () => {
+const Login = ({openLogin, onCloseLogin}) => {
+
+    if (!openLogin) return null;
+
   return (
         <div className='center'>
             <form className='form'>
+                <div className='form__close-btn' onClick={onCloseLogin}>&#10006;</div>
                 <div className='form__field'>
                     <h1 className='form__title'>Login</h1>
                 </div>
