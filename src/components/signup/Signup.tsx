@@ -9,21 +9,19 @@ const Signup = ({openSignup, onCloseSignup }) => {
   const [registerUsername, setRegisterUsername] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
 
-  const register = (e: any) => {
+  const register = async (e: any) => {
 
     e.preventDefault();
 
     const data = {registerUsername, registerPassword}
 
-    try {
-      fetch('http://localhost:13756/account/create', {
-        method: 'POST',
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      })
-    } catch (error) {
-      console.error(error);
-    }
+    const formData = {method: 'POST',
+                      headers: { "Content-Type": "application/json" },
+                      body: JSON.stringify(data)}
+
+     const response = await fetch('http://localhost:13756/account/create', formData)
+     const json = await response.json()
+     console.log(json)
   }
 
   return (

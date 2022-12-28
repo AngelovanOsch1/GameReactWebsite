@@ -1,9 +1,28 @@
+import { useState } from 'react';
 import './login.scss'
 
 const Login = ({openLogin, onCloseLogin}) => {
 
     if (!openLogin) return null;
 
+    const [loginUsername, setLoginUsername] = useState("")
+    const [loginPassword, setLoginPassword] = useState("");
+  
+    const login = async (e: any) => {
+  
+      e.preventDefault();
+  
+      const data = {loginUsername, loginPassword}
+  
+      const formData = {method: 'POST',
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify(data)}
+  
+       const response = await fetch('http://localhost:13756/account/login', formData)
+       const json = await response.json()
+       console.log(json)
+    }
+  
   return (
         <div className='center'>
             <form className='form'>
@@ -13,13 +32,13 @@ const Login = ({openLogin, onCloseLogin}) => {
                 </div>
                 <div className='form__field'>
                     <label className='form__label'>Username</label>
-                    <input className='form__input' type='text' />
+                    <input className='form__input' onChange={(e) => { setLoginUsername(e.target.value); }} type='text' />
                 </div>
                 <div className='form__field'>
                     <label className='form__label'>Password</label>
-                    <input className='form__input' type='password' />
+                    <input className='form__input' onChange={(e) => { setLoginPassword(e.target.value); }} type='password' />
                 </div>
-                <button className='form__button'>Login</button>
+                <button className='form__button' onClick={login}>Login</button>
             </form>
         </div>
     )  
