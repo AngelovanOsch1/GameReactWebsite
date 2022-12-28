@@ -1,8 +1,30 @@
+import { useState } from 'react';
+
 import './signup.scss'
 
 const Signup = ({openSignup, onCloseSignup }) => {
 
   if (!openSignup) return null;
+
+  const [registerUsername, setRegisterUsername] = useState("");
+  const [registerPassword, setRegisterPassword] = useState("");
+
+  const register = (e: any) => {
+
+    e.preventDefault();
+
+    const data = {registerUsername, registerPassword}
+
+    try {
+      fetch('http://localhost:13756/account/create', {
+        method: 'POST',
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      })
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   return (
     <div className='center'>
@@ -13,13 +35,13 @@ const Signup = ({openSignup, onCloseSignup }) => {
           </div>
           <div className='form__field'>
               <label className='form__label'>Username</label>
-              <input className='form__input' type='text' />
+              <input className='form__input' onChange={(e) => { setRegisterUsername(e.target.value); }} type='text' />
           </div>
           <div className='form__field'>
               <label className='form__label'>Password</label>
-              <input className='form__input' type='password' />
+              <input className='form__input' onChange={(e) => { setRegisterPassword(e.target.value); }} type='password' />
           </div>
-          <button className='form__button'>Register</button>
+          <button className='form__button' onClick={register}>Register</button>
       </form>
     </div>
   )
