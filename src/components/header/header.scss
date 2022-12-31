@@ -35,4 +35,36 @@
             cursor: pointer;
         }
     }
+
+        &__button--download {
+        width: 45%;
+        background-color: rgb(68, 220, 93);
+        border: none;
+        color: #fff;
+        font-size: 3em;
+        letter-spacing: 0.3em;
+        padding: 1em;
+        text-decoration: none;
+        text-align: center;
+
+        &:hover {
+            background-color: rgb(61, 185, 82);
+            cursor: pointer;
+        }
+    }
+
+     &__button--logout {
+        width: 45%;
+        background-color: rgb(197, 68, 68);
+        border: none;
+        color: #fff;
+        font-size: 3em;
+        letter-spacing: 0.3em;
+        padding: 1em;
+
+        &:hover {
+            background-color: rgb(180, 89, 89);
+            cursor: pointer;
+        }
+    }
 }

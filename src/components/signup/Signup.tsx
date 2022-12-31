@@ -2,14 +2,14 @@ import { useState } from 'react';
 
 import './signup.scss'
 
-const Signup = ({openSignup, onCloseSignup }) => {
+const Signup = ({ openSignup, onCloseSignup}) => {
 
   if (!openSignup) return null;
 
   const [registerUsername, setRegisterUsername] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
 
-  const register = async (e: any) => {
+  const register = async (e: React.MouseEvent<HTMLButtonElement>) => {
 
     e.preventDefault();
 

@@ -1,28 +1,31 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
+import { Account } from '../../Account'
 import './login.scss'
 
-const Login = ({openLogin, onCloseLogin}) => {
+const Login = ({ openLogin, onCloseLogin }) => {
 
     if (!openLogin) return null;
 
     const [loginUsername, setLoginUsername] = useState("")
-    const [loginPassword, setLoginPassword] = useState("");
+    const [loginPassword, setLoginPassword] = useState("")
+
+
+    const login = async (e: React.MouseEvent<HTMLButtonElement>) => {
   
-    const login = async (e: any) => {
+        e.preventDefault();
   
-      e.preventDefault();
+        const data = {loginUsername, loginPassword}
+
   
-      const data = {loginUsername, loginPassword}
-  
-      const formData = {method: 'POST',
+        const formData = {method: 'POST',
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify(data)}
   
-       const response = await fetch('http://localhost:13756/account/login', formData)
-       const json = await response.json()
-       console.log(json)
+        const response = await fetch('http://localhost:13756/account/login', formData)
+        const accountData = await response.json()
+        var gameAccount = new Account(accountData.username, accountData._id)
     }
-  
+
   return (
         <div className='center'>
             <form className='form'>
@@ -45,3 +48,4 @@ const Login = ({openLogin, onCloseLogin}) => {
 }
 
 export default Login
+
