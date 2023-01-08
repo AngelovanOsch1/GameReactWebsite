@@ -1,8 +1,12 @@
 import { useState } from 'react';
-
 import './signup.scss'
 
-const Signup = ({ openSignup, onCloseSignup}) => {
+interface Props {
+  openSignup: boolean
+  onCloseSignup: any
+}
+
+const Signup: React.FC<Props> = ({ openSignup, onCloseSignup}) => {
 
   if (!openSignup) return null;
 

@@ -1,29 +1,36 @@
 import React, { useState } from 'react';
-import { Account } from '../../Account'
 import './login.scss'
+import { Account } from '../../Account';
 
-const Login = ({ openLogin, onCloseLogin }) => {
+interface Props {
+    openLogin: boolean
+    onCloseLogin: any
+}
+
+const Login: React.FC<Props> = ({ openLogin, onCloseLogin }) => {
 
     if (!openLogin) return null;
 
-    const [loginUsername, setLoginUsername] = useState("")
-    const [loginPassword, setLoginPassword] = useState("")
+    const [loginUsername, setLoginUsername] = useState<string>("")
+    const [loginPassword, setLoginPassword] = useState<string>("")
 
-
-    const login = async (e: React.MouseEvent<HTMLButtonElement>) => {
+     const login = async (e: React.MouseEvent<HTMLButtonElement>) => {
   
         e.preventDefault();
-  
-        const data = {loginUsername, loginPassword}
 
-  
-        const formData = {method: 'POST',
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify(data)}
-  
-        const response = await fetch('http://localhost:13756/account/login', formData)
-        const accountData = await response.json()
-        var gameAccount = new Account(accountData.username, accountData._id)
+        try {
+            const data = {loginUsername, loginPassword}
+            const formData = {method: 'POST',
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify(data)}
+          
+            const response = await fetch('http://localhost:13756/account/login', formData)
+            const accountData = await response.json()
+            const gameAccount = new Account(accountData.username, accountData._id)
+            console.log(gameAccount)
+        } catch {
+            console.log("error")
+        }
     }
 
   return (
