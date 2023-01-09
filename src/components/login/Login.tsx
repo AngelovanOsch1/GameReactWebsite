@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
+import React, { Dispatch, useState } from 'react';
 import './login.scss'
 import { Account } from '../../Account';
 
 interface Props {
     openLogin: boolean
     onCloseLogin: any
+    setAccount: Dispatch<string>
 }
 
-const Login: React.FC<Props> = ({ openLogin, onCloseLogin }) => {
+const Login: React.FC<Props> = ({ openLogin, onCloseLogin, setAccount }) => {
 
     if (!openLogin) return null;
 
@@ -27,7 +28,7 @@ const Login: React.FC<Props> = ({ openLogin, onCloseLogin }) => {
             const response = await fetch('http://localhost:13756/account/login', formData)
             const accountData = await response.json()
             const gameAccount = new Account(accountData.username, accountData._id)
-            console.log(gameAccount)
+            setAccount(gameAccount.username)
         } catch {
             console.log("error")
         }
