@@ -8,7 +8,7 @@ interface Props {
 
 const Signup: React.FC<Props> = ({ openSignup, onCloseSignup}) => {
 
-  if (!openSignup) return null;
+  if (!openSignup) return null
 
   const [registerUsername, setRegisterUsername] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
@@ -23,9 +23,9 @@ const Signup: React.FC<Props> = ({ openSignup, onCloseSignup}) => {
                       headers: { "Content-Type": "application/json" },
                       body: JSON.stringify(data)}
 
-     const response = await fetch('http://localhost:13756/account/create', formData)
+     const response = await fetch('https://unityapi-production.up.railway.app/account/create', formData)
      const json = await response.json()
-     console.log(json)
+     onCloseSignup()
   }
 
   return (

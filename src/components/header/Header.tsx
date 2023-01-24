@@ -14,16 +14,12 @@ const Header: React.FC<Props> = ({ account, setAccount }) => {
   const [openLoginModal, setLoginOpenModal] = useState<boolean>(false)
   const [openSignupModal, setSignupOpenModal] = useState<boolean>(false)
 
-  const Logout = () => {
-    setAccount('')
-  }
-
   return (
     <header className='header'>
       { account ?
       <>
         <a className='header__button--download' href='https://dl.dropboxusercontent.com/s/ey4pt2tkg2ngd3m/Launcher.zip?dl=0' download='Launcher'>Download</a>
-        <button onClick={Logout} className='header__button--logout'>logout</button>
+        <button onClick={() => setAccount('')} className='header__button--logout'>logout</button>
       </>
       :
       <>

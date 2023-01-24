@@ -15,7 +15,7 @@ const Login: React.FC<Props> = ({ openLogin, onCloseLogin, setAccount }) => {
     const [loginUsername, setLoginUsername] = useState<string>("")
     const [loginPassword, setLoginPassword] = useState<string>("")
 
-     const login = async (e: React.MouseEvent<HTMLButtonElement>) => {
+     const login =  async (e: React.MouseEvent<HTMLButtonElement>) => {
   
         e.preventDefault();
 
@@ -25,7 +25,7 @@ const Login: React.FC<Props> = ({ openLogin, onCloseLogin, setAccount }) => {
                             headers: { "Content-Type": "application/json" },
                             body: JSON.stringify(data)}
           
-            const response = await fetch('http://localhost:13756/account/login', formData)
+            const response = await fetch('https://unityapi-production.up.railway.app/account/login', formData)
             const accountData = await response.json()
             const gameAccount = new Account(accountData.username, accountData._id)
             setAccount(gameAccount.username)
